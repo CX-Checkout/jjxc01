@@ -95,4 +95,24 @@ public class CheckoutTest {
     public void compute_3Us_for_120_checkout() {
         assertThat(Checkout.checkout("UUU"), equalTo(120));
     }
+    
+    @Test
+    public void compute_groupDiscount_checkout() {
+        assertThat(Checkout.checkout("XYZ"), equalTo(45));
+    }
+    
+    @Test
+    public void compute_SSSZ_checkout() {
+        assertThat(Checkout.checkout("SSSZ"), equalTo(65));
+    }
+    
+    @Test
+    public void compute_ZZZS_checkout() {
+        assertThat(Checkout.checkout("ZZZS"), equalTo(65));
+    }
+    
+    @Test
+    public void compute_STXS_checkout() {
+        assertThat(Checkout.checkout("STXS"), equalTo(62));
+    }
 }
