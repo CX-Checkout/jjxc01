@@ -20,7 +20,37 @@ public class Checkout {
 		put("C", howMany -> howMany * 20);
 		put("D", howMany -> howMany * 15);
 		put("E", howMany -> howMany * 40);
-		put("F", howMany -> (howMany / 3) * 20 + (howMany % 3) * 10);
+		put("F", howMany -> (howMany / 3) * 20 + (howMany % 3) * 10);	
+		put("G", howMany -> howMany * 20);
+		put("H", howMany -> {
+			int total = (howMany / 10) * 80;
+			howMany %= 10;
+			total += (howMany/ 5) * 45 + (howMany % 5) * 10;
+			return total;
+		}); 
+		put("I", howMany -> howMany * 35);
+		put("J", howMany -> howMany * 60);
+		put("K", howMany -> (howMany / 2) * 150 + (howMany % 2) * 80);
+		put("L", howMany -> howMany * 90);
+		put("M", howMany -> howMany * 15);
+		put("N", howMany -> howMany * 40);
+		put("O", howMany -> howMany * 10);
+		put("P", howMany -> (howMany / 5) * 200 + (howMany % 5) * 50);
+		put("Q", howMany -> (howMany / 3) * 80 + (howMany % 3) * 30);
+		put("R", howMany -> howMany * 50);
+		put("S", howMany -> howMany * 30);
+		put("T", howMany -> howMany * 20);
+		put("U", howMany -> (howMany / 4) * 120 + (howMany % 4) * 40);
+		put("V", howMany -> {
+			int total = (howMany / 3) * 130;
+			howMany %= 3;
+			total += (howMany/ 2) * 90 + (howMany % 2) * 50;
+			return total;
+		}); 
+		put("W", howMany -> howMany * 20);
+		put("X", howMany -> howMany * 90);
+		put("Y", howMany -> howMany * 10);
+		put("Z", howMany -> howMany * 50);
 	}};
 	
 	
@@ -31,7 +61,9 @@ public class Checkout {
 		if(skus.isEmpty())
 			return 0;
 		final Map<String, Long> groupedOrder = groupOrder(skus);
-		applyFreeItems(groupedOrder);
+		applyFreeItems(groupedOrder, "E", "B", 2);
+		applyFreeItems(groupedOrder, "R", "Q", 3);
+		applyFreeItems(groupedOrder, "N", "M", 3);
 		try
 		{
 			return calculatePrice(groupedOrder);
@@ -53,11 +85,11 @@ public class Checkout {
 
 
 
-	private static void applyFreeItems(final Map<String, Long> groupedOrder) {
-		if(groupedOrder.containsKey("B"))
+	private static void applyFreeItems(final Map<String, Long> groupedOrder, String k1, String k2, int howMany) {
+		if(groupedOrder.containsKey(k1))
 		{
-			final long es = groupedOrder.getOrDefault("E", 0L) / 2;
-			groupedOrder.computeIfPresent("B", (k,v) -> Math.max(0, v - es));
+			final long freeItemsCount = groupedOrder.getOrDefault(k1, 0L) / howMany;
+			groupedOrder.computeIfPresent(k2, (k,v) -> Math.max(0, v - freeItemsCount));
 		}
 	}
 

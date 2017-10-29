@@ -85,4 +85,14 @@ public class CheckoutTest {
     public void compute_6Fs_means_2_free_checkout() {
         assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
     }
+    
+    @Test
+    public void compute_5Ps_for_200_checkout() {
+        assertThat(Checkout.checkout("PPPPP"), equalTo(200));
+    }
+    
+    @Test
+    public void compute_3Us_for_120_checkout() {
+        assertThat(Checkout.checkout("UUU"), equalTo(120));
+    }
 }
