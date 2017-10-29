@@ -55,4 +55,14 @@ public class CheckoutTest {
     public void compute_invalidSku_checkout() {
         assertThat(Checkout.checkout("-"), equalTo(-1));
     }
+    
+    @Test
+    public void compute_5As_discount_checkout() {
+        assertThat(Checkout.checkout("AAAAA"), equalTo(200));
+    }
+    
+    @Test
+    public void compute_freeB_if_2Es_discount_checkout() {
+        assertThat(Checkout.checkout("EBE"), equalTo(80));
+    }
 }
