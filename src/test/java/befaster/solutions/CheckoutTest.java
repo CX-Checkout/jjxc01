@@ -65,4 +65,24 @@ public class CheckoutTest {
     public void compute_freeB_if_2Es_discount_checkout() {
         assertThat(Checkout.checkout("EBE"), equalTo(80));
     }
+    
+    @Test
+    public void compute_2Fs_no_discount_checkout() {
+        assertThat(Checkout.checkout("FF"), equalTo(20));
+    }
+    
+    @Test
+    public void compute_3Fs_means_1_free_checkout() {
+        assertThat(Checkout.checkout("FFF"), equalTo(20));
+    }
+    
+    @Test
+    public void compute_5Fs_means_1_free_checkout() {
+        assertThat(Checkout.checkout("FFFFF"), equalTo(40));
+    }
+    
+    @Test
+    public void compute_6Fs_means_2_free_checkout() {
+        assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
+    }
 }

@@ -20,6 +20,7 @@ public class Checkout {
 		put("C", howMany -> howMany * 20);
 		put("D", howMany -> howMany * 15);
 		put("E", howMany -> howMany * 40);
+		put("F", howMany -> (howMany / 3) * 20 + (howMany % 3) * 10);
 	}};
 	
 	
